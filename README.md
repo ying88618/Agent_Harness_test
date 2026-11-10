@@ -95,7 +95,6 @@ python main.py --once "我的待办有哪些？"           --session window-2
 窗口2 追问 → -> todo({"action": "list"}) → 你当前有 1 条待办：#1 写本周周报
 ```
 
-注意最后一组：**追问时模型是去调 `todo(list)` 查的，而不是"回忆"**。这是有意的设计，见 §4.4。
 
 ---
 
@@ -344,12 +343,6 @@ python scripts/check_concurrency.py --threads 200
 python scripts/smoke_api.py
 ```
 4 个真实场景：单工具计算 / 一轮多工具 / 同 session 追问 / 跨 session 隔离。断言尽量查**程序状态**而不是模型措辞（例如隔离性直接查 `store`，不问模型"你有没有待办"）。
-
-### 6.4 未覆盖的部分
-
-- `main.py` CLI 的 argparse 分支（手动测）
-- 多进程写同一个 session 文件（需要文件锁，题目未要求）
-- 流式输出（未实现）
 
 ---
 
